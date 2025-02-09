@@ -18,6 +18,8 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
+const TOAST_DURATION = 5000;
+
 function Toast({ type, children, id }) {
   const { removeToast } = React.useContext(ToastContext);
 
@@ -27,7 +29,7 @@ function Toast({ type, children, id }) {
   React.useEffect(() => {
     const removeToastTime = setTimeout(() => {
       removeToast(id);
-    }, 5000);
+    }, TOAST_DURATION);
 
     return () => {
       clearTimeout(removeToastTime);
@@ -41,6 +43,8 @@ function Toast({ type, children, id }) {
       </div>
       <p className={styles.content}>{children}</p>
       <button
+        aria-label="Dismiss message"
+        aria-live="off"
         className={styles.closeButton}
         onClick={() => {
           removeToast(id);
