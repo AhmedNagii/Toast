@@ -8,7 +8,7 @@ function ToastContextProvider({ children }) {
 
   const pushNewToast = (toast) => {
     setToastList((currentState) => {
-      return [{ ...toast, id: createId() }, ...currentState];
+      return [...currentState, { ...toast, id: createId() }];
     });
   };
   const removeToast = (toastId) => {
