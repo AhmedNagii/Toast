@@ -41,7 +41,10 @@ function Toast({ type, children, id }) {
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
-      <p className={styles.content}>{children}</p>
+      <p className={styles.content}>
+        <VisuallyHidden>{type}</VisuallyHidden>
+        {children}
+      </p>
       <button
         aria-label="Dismiss message"
         aria-live="off"
@@ -51,7 +54,6 @@ function Toast({ type, children, id }) {
         }}
       >
         <X size={24} />
-        <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
     </div>
   );
