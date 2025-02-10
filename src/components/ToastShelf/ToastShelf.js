@@ -16,9 +16,11 @@ function ToastShelf() {
     >
       {toastList.map(({ message, type, id }) => {
         return (
-          <Toast key={id} id={id} type={type}>
-            {message}
-          </Toast>
+          <li className={styles.toastWrapper}>
+            <Toast key={id} id={id} type={type}>
+              {message}
+            </Toast>
+          </li>
         );
       })}
     </ol>
