@@ -1,6 +1,6 @@
 import React from "react";
 import { createId } from "crypto-id";
-import useEscButton from "../hooks/useEscButton.js";
+import useKeydown from "../hooks/use-keydown.js";
 export const ToastContext = React.createContext();
 
 function ToastContextProvider({ children }) {
@@ -17,23 +17,10 @@ function ToastContextProvider({ children }) {
     });
   };
 
-  useEscButton(() => {
+  useKeydown("Escape", () => {
     setToastList([]);
   });
 
-  React.useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        debugger;
-        setToastList([]);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
 
   const value = { toastList, pushNewToast, removeToast };
 

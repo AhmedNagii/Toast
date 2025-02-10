@@ -1,10 +1,10 @@
 import React from "react";
 
-const useEscButton = (onButtonPress) => {
+const useKeydown = (key, callBack) => {
   React.useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        onButtonPress();
+      if (event.key === key) {
+        callBack();
       }
     };
 
@@ -12,8 +12,8 @@ const useEscButton = (onButtonPress) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [onButtonPress]);
+  }, [callBack]);
   return null;
 };
 
-export default useEscButton;
+export default useKeydown;
